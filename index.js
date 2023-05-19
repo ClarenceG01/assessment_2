@@ -1,38 +1,37 @@
-const products_url = "https://jsonplaceholder.typicode.com/posts/1";
+const product_url = "https://jsonplaceholder.typicode.com/posts/1";
 const all_products="https://jsonplaceholder.typicode.com/posts";
-const delete_url = "https://jsonplaceholder.typicode.com/posts/1";
 const filter_url= 'https://jsonplaceholder.typicode.com/posts?userId=1'
 // LIST
 fetch(all_products).then(res=>res.json().then(result=>console.log(result)))
 
 // // POST
-// async function createUser() {
-//   try {
-//     const new_user = await fetch(products_url, {
-//       method: "POST",
-//       body: JSON.stringify({
-//         userId: 101,
-//         title: "Doe",
-//         body: "lorem",
-//       }),
-//       headers: {
-//         "Content-type": "application/json; charset=UTF-8",
-//       },
-//     });
-//     const json = await new_user.json();
-//     console.log(json);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-// createUser();
+async function createUser() {
+  try {
+    const new_user = await fetch(all_products, {
+      method: "POST",
+      body: JSON.stringify({
+        title: "Doe",
+        body: "lorem",
+        userId: 1
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    const json = await new_user.json();
+    console.log("New user:" +json);
+  } catch (error) {
+    console.log(error);
+  }
+}
+createUser()
 
 
 
 //UPDATE
 // async function update(){
 //     try {
-//         const updated_user= await fetch(products_url,{
+//         const updated_user= await fetch(product_url,{
 //             method:'PUT',
 //             body:JSON.stringify({
 //                 id: 1,
@@ -52,7 +51,7 @@ fetch(all_products).then(res=>res.json().then(result=>console.log(result)))
 // update()
 async function update() {
   try {
-    const response = await fetch(products_url, {
+    const new_update = await fetch(product_url, {
       method: "PUT",
       body: JSON.stringify({
         id: 1,
@@ -64,10 +63,10 @@ async function update() {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
-    const json = await response.json();
+    const json = await new_update.json();
     console.log(json);
   } catch (error) {
-    console.error("Error:", error);
+    console.error(error);
   }
 }
 
@@ -76,10 +75,10 @@ update();
 // DELETE
 async function deleteEntry() {
   try {
-    const response = await fetch(delete_url, {
+    const deleted_entry = await fetch(product_url, {
       method: "DELETE",
     });
-    const json = await response.json();
+    const json = await deleted_entry.json();
     console.log(json);
   } catch (error) {
     console.log(error);
@@ -88,7 +87,7 @@ async function deleteEntry() {
 deleteEntry();
 
 // FILTER
-async function deleteEntry() {
+async function filter() {
     try {
       const response = await fetch(filter_url);
       const json = await response.json();
@@ -97,4 +96,4 @@ async function deleteEntry() {
       console.log(error);
     }
   }
-  deleteEntry();
+  filter();
